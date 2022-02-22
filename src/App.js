@@ -1,11 +1,19 @@
-import { Button } from "antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Outlet from "./pages/Outlet";
+import Management from "./pages/Management";
+import Home from "./pages/Home";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route path="ofertas" element={<Outlet />} />
+          <Route path="administracao" element={<Management />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
