@@ -1,32 +1,19 @@
-import { Table, Row, Col, Space, Button, Input } from "antd";
+import { Table, Row, Col, Space, Button, Input, Popconfirm } from "antd";
 import { useDiscounts } from "../../hooks/useDiscount";
 import ModalDiscount from "../../components/Modal";
 
 const { Search } = Input;
-const columns = [
-  {
-    title: "Marca",
-    dataIndex: "marca",
-    key: "marca",
-  },
-  {
-    title: "Ação",
-    key: "ação",
-    render: () => (
-      <Space size="middle">
-        <Button type="primary">Editar</Button>
-        <Button type="primary" danger>
-          Deletar
-        </Button>
-      </Space>
-    ),
-  },
-];
+const { Column } = Table;
 
 const Management = () => {
-  const { discounts, createDiscunt, showModalDiscount } = useDiscounts();
-
-  const handleCreateDiscount = () => {};
+  const {
+    visibleModalDiscount,
+    discounts,
+    showModalDiscount,
+    closeModalDiscount,
+    deleteDiscount,
+    updateDiscount,
+  } = useDiscounts();
 
   return (
     <main>
@@ -47,7 +34,11 @@ const Management = () => {
           <Button type="primary" onClick={showModalDiscount}>
             Adicionar oferta
           </Button>
-          <ModalDiscount />
+          <ModalDiscount
+            visible={visibleModalDiscount}
+            onCancel={closeModalDiscount}
+            text="Adicionar oferta"
+          />
           <Search
             placeholder="input search text"
             allowClear
@@ -57,7 +48,38 @@ const Management = () => {
       </Row>
       <Row style={{ margin: "0 16px" }}>
         <Col span={24}>
-          <Table columns={columns} dataSource={discounts} />
+          <Table dataSource={discounts}>
+            <Column title="Marca" dataIndex="marca" key="marca" />
+            <Column title="Modelo" dataIndex="modelo" key="modelo" />
+            <Column title="Ano" dataIndex="ano" key="ano" />
+            <Column title="Preço" dataIndex="preco" key="preco" />
+            <Column title="KM" dataIndex="km" key="km" />
+            <Column title="Placa" dataIndex="placa" key="placa" />
+            <Column title="Data" dataIndex="data" key="data" />
+            <Column
+              title="Ação"
+              dataIndex="action"
+              key="action"
+              render={(_, record) => (
+                <Space size="middle">
+                  <Button
+                    type="primary"
+                    onClick={() => updateDiscount(record.key)}
+                  >
+                    Editar
+                  </Button>
+                  <Popconfirm
+                    title="Deseja realmente deletar?"
+                    onConfirm={() => deleteDiscount(record.key)}
+                  >
+                    <Button type="primary" danger>
+                      Deletar
+                    </Button>
+                  </Popconfirm>
+                </Space>
+              )}
+            />
+          </Table>
         </Col>
       </Row>
     </main>
