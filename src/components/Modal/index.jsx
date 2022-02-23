@@ -3,20 +3,13 @@ import moment from "moment";
 import { useDiscounts } from "../../hooks/useDiscount";
 
 const ModalDiscount = (props) => {
-  //const [form] = Form.useForm();
   const { createDiscunt, confirmModalLoading, formDiscount } = useDiscounts();
-
-  const onFillForm = () => {
-    formDiscount.setFieldsValue({
-      marca: "Fiat",
-    });
-  };
 
   const handleOk = () => {
     formDiscount.validateFields().then((values) => {
       const formFieldsFormated = {
         ...values,
-        ano: moment(values.ano).format("YYYY-MM-DD"),
+        ano: moment(values.ano).format("YYYY"),
         km: values.km ? values.km : 0,
         data: moment(new Date()).format("YYYY-MM-DD"),
       };
