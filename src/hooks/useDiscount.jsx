@@ -105,6 +105,20 @@ export function DiscountProvider({ children }) {
     });
   };
 
+  // Filter discouts in state case empty search discounts in firebase
+  const filterDiscount = (filter) => {
+    if (filter === "") searchDiscounts();
+
+    const filtered = discounts.filter(
+      (item) =>
+        item.marca.toLowerCase().includes(filter.toLowerCase()) ||
+        item.modelo.toLowerCase().includes(filter.toLowerCase()) ||
+        item.placa.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    if (filtered.length > 0) setDiscounts(filtered);
+  };
+
   return (
     <DiscountContext.Provider
       value={{
@@ -116,6 +130,7 @@ export function DiscountProvider({ children }) {
         confirmModalLoading,
         deleteDiscount,
         editDiscount,
+        filterDiscount,
         formDiscount,
       }}
     >
