@@ -13,6 +13,7 @@ const Management = () => {
     closeModalDiscount,
     deleteDiscount,
     editDiscount,
+    filterDiscount,
   } = useDiscounts();
 
   return (
@@ -40,9 +41,10 @@ const Management = () => {
             text="Adicionar oferta"
           />
           <Search
-            placeholder="input search text"
+            placeholder="pesquise aqui"
             allowClear
             style={{ width: 200 }}
+            onChange={(event) => filterDiscount(event.target.value)}
           />
         </Col>
       </Row>
@@ -52,7 +54,14 @@ const Management = () => {
             <Column title="Marca" dataIndex="marca" key="marca" />
             <Column title="Modelo" dataIndex="modelo" key="modelo" />
             <Column title="Ano" dataIndex="ano" key="ano" />
-            <Column title="Preço" dataIndex="preco" key="preco" />
+            <Column
+              title="Preço"
+              dataIndex="preco"
+              key="preco"
+              render={(text) => {
+                return `R$ ${text}`;
+              }}
+            />
             <Column title="KM" dataIndex="km" key="km" />
             <Column title="Placa" dataIndex="placa" key="placa" />
             <Column title="Data" dataIndex="data" key="data" />
