@@ -12,7 +12,7 @@ const Management = () => {
     showModalDiscount,
     closeModalDiscount,
     deleteDiscount,
-    updateDiscount,
+    editDiscount,
   } = useDiscounts();
 
   return (
@@ -64,7 +64,7 @@ const Management = () => {
                 <Space size="middle">
                   <Button
                     type="primary"
-                    onClick={() => updateDiscount(record.key)}
+                    onClick={() => editDiscount(record.key)}
                   >
                     Editar
                   </Button>
