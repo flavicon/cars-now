@@ -1,23 +1,24 @@
 import { Modal, Form, Input, InputNumber, DatePicker } from "antd";
+import moment from "moment";
 import { useDiscounts } from "../../hooks/useDiscount";
 
 const ModalDiscount = (props) => {
-  const [form] = Form.useForm();
-  const { createDiscunt, confirmModalLoading } = useDiscounts();
+  //const [form] = Form.useForm();
+  const { createDiscunt, confirmModalLoading, formDiscount } = useDiscounts();
 
   const onFillForm = () => {
-    form.setFieldsValue({
+    formDiscount.setFieldsValue({
       marca: "Fiat",
     });
   };
 
   const handleOk = () => {
-    form.validateFields().then((values) => {
+    formDiscount.validateFields().then((values) => {
       const formFieldsFormated = {
         ...values,
-        ano: new Date(values.ano).getFullYear(),
+        ano: moment(values.ano).format("YYYY-MM-DD"),
         km: values.km ? values.km : 0,
-        data: new Intl.DateTimeFormat("pt-br").format(new Date()),
+        data: moment(new Date()).format("YYYY-MM-DD"),
       };
 
       createDiscunt(formFieldsFormated);
@@ -33,7 +34,7 @@ const ModalDiscount = (props) => {
       onCancel={props.onCancel}
       destroyOnClose
     >
-      <Form form={form} layout="vertical" preserve={false}>
+      <Form form={formDiscount} layout="vertical" preserve={false}>
         <Form.Item
           name="marca"
           label="Marca"
