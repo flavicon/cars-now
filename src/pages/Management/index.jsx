@@ -1,7 +1,17 @@
-import { Table, Row, Col, Space, Button, Input, Popconfirm } from "antd";
+import {
+  Typography,
+  Table,
+  Row,
+  Col,
+  Space,
+  Button,
+  Input,
+  Popconfirm,
+} from "antd";
 import { useDiscounts } from "../../hooks/useDiscount";
 import ModalDiscount from "../../components/Modal";
 
+const { Title } = Typography;
 const { Search } = Input;
 const { Column } = Table;
 
@@ -17,10 +27,10 @@ const Management = () => {
   } = useDiscounts();
 
   return (
-    <main>
-      <Row style={{ margin: "32px 16px" }}>
+    <>
+      <Row style={{ textAlign: "center", margin: "32px 16px" }}>
         <Col span={24}>
-          <h1>Ofertas cadastradas</h1>
+          <Title level={3}>Ofertas cadastradas</Title>
         </Col>
       </Row>
       <Row style={{ margin: "0 16px" }}>
@@ -91,7 +101,7 @@ const Management = () => {
           </Table>
         </Col>
       </Row>
-    </main>
+    </>
   );
 };
 
