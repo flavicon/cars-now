@@ -1,10 +1,11 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import { Menu, Layout } from "antd";
 import { DollarOutlined, UserOutlined } from "@ant-design/icons";
+import WheelIcon from "../../assets/icon-roda.png";
 
 const { Header, Footer, Content } = Layout;
 
-const menuStyles = { display: "flex", justifyContent: "end" };
+const menuStyles = { width: "100%", display: "flex", justifyContent: "end" };
 
 const Home = () => {
   let navigate = useNavigate();
@@ -17,8 +18,13 @@ const Home = () => {
           position: "fixed",
           zIndex: 1,
           width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src={WheelIcon} alt="logo" width={40} height={40} />
+        </div>
         <Menu mode="horizontal" style={menuStyles}>
           <Menu.Item
             key="outlet"
@@ -40,7 +46,7 @@ const Home = () => {
         <Content
           style={{
             minHeight: "100vh",
-            backgroundColor: "white",
+            backgroundColor: "#F8F9FA",
             marginTop: 64,
           }}
         >
