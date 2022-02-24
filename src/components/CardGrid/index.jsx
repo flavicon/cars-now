@@ -21,7 +21,7 @@ const CardGrid = (props) => {
       style={{ maxWidth: "1000px" }}
       dataSource={props.dataSource}
       renderItem={(item) => (
-        <List.Item>
+        <List.Item onClick={() => props.onClick(item)}>
           <Card
             hoverable
             style={{ width: 300 }}
