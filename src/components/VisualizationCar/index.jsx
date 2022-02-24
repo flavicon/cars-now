@@ -1,4 +1,5 @@
-import { Tag, Typography, Modal, Carousel, Divider, Image } from "antd";
+import { Space, Tag, Typography, Modal, Carousel, Divider, Image } from "antd";
+import moment from "moment";
 
 const { Text, Title } = Typography;
 
@@ -15,25 +16,51 @@ const VisualizationCar = (props) => {
           <Image
             src={props.foto}
             alt="foto1"
-            style={{ height: "350px", width: "450px" }}
+            style={{ height: "400px", width: "500px" }}
           />
         </div>
         <div width={100}>
           <Image
             src={props.fotoAdicional}
             alt="fotoAdicional"
-            style={{ height: "350px", width: "450px" }}
+            style={{ height: "400px", width: "500px" }}
           />
         </div>
       </Carousel>
       <Divider />
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <Text strong>
-          {props.modelo}, {props.ano}
-        </Text>
-        <Tag>Marca: {props.marca}</Tag>
-        <Text type="success">R$ {props.preco}</Text>
-      </div>
+      <Space style={{ width: "100%" }} direction="vertical">
+        <Space
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text strong>
+            {props.modelo}, {props.ano}
+          </Text>
+          <Space size={1}>
+            <Tag color="geekblue">{props.marca}</Tag>
+            <Tag color="geekblue">{props.cidade}</Tag>
+          </Space>
+        </Space>
+        <Space direction="vertical">
+          <Text type="secondary">Caracteristicas</Text>
+          <Space size={1}>
+            <Tag color="cyan">{props.cor}</Tag>
+            <Tag color="cyan">{props.km} KM</Tag>
+            <Tag color="cyan">Ano: {props.ano}</Tag>
+            <Tag color="cyan">Placa: {props.placa}</Tag>
+            <Tag color="cyan">
+              Criado: {moment(props.data).format("DD-MM-YYYY")}
+            </Tag>
+          </Space>
+        </Space>
+        <Space>
+          <Text>Valor:</Text>
+          <Text type="success">R${props.preco}</Text>
+        </Space>
+      </Space>
     </Modal>
   );
 };
