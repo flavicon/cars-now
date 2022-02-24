@@ -46,7 +46,7 @@ const Outlet = () => {
         {layout === "list" ? (
           <CardList onClick={showVisualizationCar} dataSource={discounts} />
         ) : (
-          <CardGrid dataSource={discounts} />
+          <CardGrid onClick={showVisualizationCar} dataSource={discounts} />
         )}
       </section>
       {visualizationCar}
