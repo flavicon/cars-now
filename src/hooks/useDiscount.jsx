@@ -22,7 +22,10 @@ export function DiscountProvider({ children }) {
   const [formDiscount] = Form.useForm();
 
   const showModalDiscount = () => setVisibleModalDiscount(true);
-  const closeModalDiscount = () => setVisibleModalDiscount(false);
+  const closeModalDiscount = () => {
+    setVisibleModalDiscount(false);
+    setDiscountInEdition("");
+  };
 
   // Search discounts on Cloud Firestore and add on State discounts
   const searchDiscounts = async () => {
@@ -39,7 +42,6 @@ export function DiscountProvider({ children }) {
     setDiscounts(discountsList);
   };
 
-  //validar se possivel inserir direto no state
   useEffect(() => {
     searchDiscounts();
   }, []);
@@ -123,6 +125,7 @@ export function DiscountProvider({ children }) {
     <DiscountContext.Provider
       value={{
         discounts,
+        setDiscounts,
         createDiscunt,
         visibleModalDiscount,
         showModalDiscount,
