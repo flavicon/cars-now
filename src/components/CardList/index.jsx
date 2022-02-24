@@ -42,7 +42,10 @@ const CardList = (props) => {
           <Divider />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Title level={4}>R$ {item.preco}</Title>
-            <IconText icon={EyeOutlined} text="100 visalizações" />
+            <IconText
+              icon={EyeOutlined}
+              text={`${item.visualizacoes} visualizações`}
+            />
           </div>
         </List.Item>
       )}
