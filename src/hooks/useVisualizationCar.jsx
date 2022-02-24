@@ -25,6 +25,11 @@ const useVisualizationCar = () => {
       preco={discountItem.preco}
       ano={discountItem.ano}
       modelo={discountItem.modelo}
+      cor={discountItem.cor}
+      cidade={discountItem.cidade}
+      km={discountItem.km}
+      placa={discountItem.placa}
+      data={discountItem.data}
     />,
     showVisualizationCar,
   ];
