@@ -18,11 +18,10 @@ const CardList = (props) => {
       size="large"
       style={{ maxWidth: "1000px" }}
       dataSource={props.dataSource}
-      onClick={props.onClick}
       renderItem={(item) => (
         <List.Item
           style={{ marginBottom: 16, cursor: "pointer" }}
-          onClick={() => console.log(item)}
+          onClick={() => props.onClick(item)}
           key={item.key}
           extra={
             <img
