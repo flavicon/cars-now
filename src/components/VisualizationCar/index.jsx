@@ -45,20 +45,21 @@ const VisualizationCar = (props) => {
           </Space>
         </Space>
         <Space direction="vertical">
-          <Text type="secondary">Caracteristicas</Text>
+          <Text type="secondary">Detalhes</Text>
           <Space size={1}>
             <Tag color="cyan">{props.cor}</Tag>
             <Tag color="cyan">{props.km} KM</Tag>
             <Tag color="cyan">Ano: {props.ano}</Tag>
             <Tag color="cyan">Placa: {props.placa}</Tag>
             <Tag color="cyan">
-              Criado: {moment(props.data).format("DD-MM-YYYY")}
+              Publicado: {moment(props.data).format("DD-MM-YYYY")}
             </Tag>
           </Space>
         </Space>
+        <Divider />
         <Space>
           <Text>Valor:</Text>
-          <Text type="success">R${props.preco}</Text>
+          <Text strong>R${props.preco}</Text>
         </Space>
       </Space>
     </Modal>
