@@ -39,7 +39,10 @@ const CardGrid = (props) => {
             <Tag color="cyan">Marca: {item.marca}</Tag>
             <Divider />
             <Title level={4}>R$ {item.preco}</Title>
-            <IconText icon={EyeOutlined} text="100 visalizações" />
+            <IconText
+              icon={EyeOutlined}
+              text={`${item.visualizacoes} visualizações`}
+            />
           </Card>
         </List.Item>
       )}
