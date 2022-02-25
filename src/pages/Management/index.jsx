@@ -18,12 +18,13 @@ const { Column } = Table;
 const Management = () => {
   const {
     visibleModalDiscount,
-    discounts,
+    dataSourceDiscounts,
     showModalDiscount,
     closeModalDiscount,
     deleteDiscount,
     editDiscount,
     filterDiscount,
+    handleBlurFilterInput,
   } = useDiscounts();
 
   return (
@@ -55,12 +56,13 @@ const Management = () => {
             allowClear
             style={{ width: 200 }}
             onChange={(event) => filterDiscount(event.target.value)}
+            onBlur={handleBlurFilterInput}
           />
         </Col>
       </Row>
       <Row style={{ margin: "0 16px" }}>
         <Col span={24}>
-          <Table dataSource={discounts}>
+          <Table dataSource={dataSourceDiscounts}>
             <Column title="Marca" dataIndex="marca" key="marca" />
             <Column title="Modelo" dataIndex="modelo" key="modelo" />
             <Column title="Ano" dataIndex="ano" key="ano" />
