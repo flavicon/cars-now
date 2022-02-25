@@ -15,9 +15,12 @@ const DiscountContext = createContext({});
 
 export function DiscountProvider({ children }) {
   const [discounts, setDiscounts] = useState([]);
+  const [dataSourceDiscounts, setDataSourceDiscounts] = useState([]);
   const [discountInEdition, setDiscountInEdition] = useState("");
+  const [filterSearch, setFilterSearch] = useState(false);
   const [visibleModalDiscount, setVisibleModalDiscount] = useState(false);
   const [confirmModalLoading, setConfirmModalLoading] = useState(false);
+
   // Hook antd to management form
   const [formDiscount] = Form.useForm();
 
@@ -40,6 +43,7 @@ export function DiscountProvider({ children }) {
       return discountsData;
     });
     setDiscounts(discountsList);
+    setDataSourceDiscounts(discountsList);
   };
 
   useEffect(() => {
@@ -111,21 +115,33 @@ export function DiscountProvider({ children }) {
   const filterDiscount = (filter) => {
     if (filter === "") searchDiscounts();
 
-    const filtered = discounts.filter(
+    const filtered = dataSourceDiscounts.filter(
       (item) =>
         item.marca.toLowerCase().includes(filter.toLowerCase()) ||
         item.modelo.toLowerCase().includes(filter.toLowerCase()) ||
         item.placa.toLowerCase().includes(filter.toLowerCase())
     );
 
-    if (filtered.length > 0) setDiscounts(filtered);
+    if (filtered.length > 0) {
+      setDataSourceDiscounts(filtered);
+      setFilterSearch(true);
+    }
   };
+
+  const handleBlurFilterInput = () => {
+    setFilterSearch(false);
+  };
+
+  // Case user filter item on table and go to another page
+  if (!filterSearch && dataSourceDiscounts.length < discounts.length)
+    setDataSourceDiscounts(discounts);
 
   return (
     <DiscountContext.Provider
       value={{
         discounts,
         setDiscounts,
+        dataSourceDiscounts,
         createDiscunt,
         visibleModalDiscount,
         showModalDiscount,
@@ -135,6 +151,8 @@ export function DiscountProvider({ children }) {
         editDiscount,
         filterDiscount,
         formDiscount,
+        filterSearch,
+        handleBlurFilterInput,
       }}
     >
       {children}
