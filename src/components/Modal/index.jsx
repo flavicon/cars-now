@@ -26,6 +26,7 @@ const ModalDiscount = (props) => {
       onOk={handleOk}
       confirmLoading={confirmModalLoading}
       onCancel={props.onCancel}
+      centered
       destroyOnClose
     >
       <Form form={formDiscount} layout="vertical" preserve={false}>
