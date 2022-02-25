@@ -2,7 +2,7 @@
 
 <img src="public/apresentation.gif" alt="apresentation" />
 
-### How i can use this project? 
+### How can i use this project? 
 
 1. git clone https://github.com/flavicon/cars-now.git
 2. cd cars-now/ && yarn 
