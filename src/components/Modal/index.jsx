@@ -12,6 +12,7 @@ const ModalDiscount = (props) => {
         ano: moment(values.ano).format("YYYY"),
         km: values.km ? values.km : 0,
         data: moment(new Date()).format("YYYY-MM-DD"),
+        visualizacoes: 0,
       };
 
       createDiscunt(formFieldsFormated);
