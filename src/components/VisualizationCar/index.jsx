@@ -1,7 +1,7 @@
 import { Space, Tag, Typography, Modal, Carousel, Divider, Image } from "antd";
 import moment from "moment";
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const VisualizationCar = (props) => {
   return (
