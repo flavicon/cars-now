@@ -17,3 +17,7 @@ the project will open in http://localhost:3000
 1. cd cars-now/ 
 2. npm run cypress:open
 
+```js
+var teste = "teste"
+```
+
